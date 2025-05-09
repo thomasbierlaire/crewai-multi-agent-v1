@@ -39,4 +39,3 @@ RUN chmod +x /app/start.sh
 EXPOSE 8501
 
 CMD ["/app/start.sh"]
-CMD ["/app/srae"]
