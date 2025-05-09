@@ -1,3 +1,11 @@
+import os
+
+# Rediriger le répertoire d'embedchain vers /tmp
+os.environ["EMBEDCHAIN_HOME"] = "/tmp/.embedchain"
+
+# Création du répertoire si nécessaire
+os.makedirs("/tmp/.embedchain", exist_ok=True)
+
 import streamlit as st
 
 st.write("✅ Application en cours de démarrage...")
