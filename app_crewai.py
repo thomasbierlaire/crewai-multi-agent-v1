@@ -3,8 +3,6 @@ from patch_crewai import *
 
 import streamlit as st
 
-st.write("✅ Application en cours de démarrage...")
-
 from crewai import Agent, Task, Crew, Process
 from langchain_community.tools import DuckDuckGoSearchRun
 
