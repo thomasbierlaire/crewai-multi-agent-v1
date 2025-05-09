@@ -34,7 +34,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Copiez et rendez exécutable le script de démarrage
-COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 EXPOSE 8501
