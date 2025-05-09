@@ -31,6 +31,7 @@ jobs:
 
       - name: Copy files safely
         run: |
+          shopt -s extglob
           echo "Nettoyage de l'espace local..."
           cd hf-space
           git ls-files | xargs rm -f
