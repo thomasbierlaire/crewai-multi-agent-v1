@@ -1,15 +1,24 @@
-# 💡 Système Multi-Agents Crew AI + Streamlit
+---
+title: Crew AI Multi-Agent System
+sdk: "docker" 
+emoji: 🧠
+colorFrom: green
+colorTo: indigo
+app_file: app_crewai.py
+pinned: false
+---
 
-Template prêt à déployer sur **Hugging Face Spaces** avec intégration automatique via **GitHub Actions**.
+# 💡 Système Multi-Agents - Crew AI + Streamlit
 
-## 🛠 Technologies utilisées
+Démo interactive d’un système multi-agents basé sur [Crew AI](https://github.com/joaomdmoura/crewAI ).
+
+## 🔧 Technologies utilisées
 
 - [Streamlit](https://streamlit.io/ )
 - [Crew AI](https://github.com/joaomdmoura/crewAI )
-- [LangChain Community Tools](https://python.langchain.com/docs/integrations/tools/ )
+- [LangChain](https://python.langchain.com/ )
 
-## ▶️ Lancement local
+## 📦 Dépendances
 
 ```bash
-docker build -t crewai-app .
-docker run -p 8501:8501 crewai-app
+pip install crewai streamlit langchain langchain-community duckduckgo-search
