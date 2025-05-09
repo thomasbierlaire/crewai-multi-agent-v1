@@ -29,14 +29,16 @@ jobs:
           echo "Clonage de l’espace Hugging Face : $SPACE_ID"
           git clone https://user:$HF_TOKEN@huggingface.co/spaces/$SPACE_ID hf-space
 
-      - name: Copy files
+      - name: Copy files safely
         run: |
-          echo "Copie des fichiers locaux vers l’espace"
+          echo "Nettoyage de l'espace local..."
           cd hf-space
           git ls-files | xargs rm -f
           cd ..
-          cp -r . hf-space/
-          rm -rf hf-space/.git hf-space/.github
+          
+          echo "Copie des fichiers sans le dossier hf-space"
+          # Copie sans inclure le dossier hf-space lui-même
+          cp -r !(hf-space) hf-space/
 
       - name: Commit & Push
         env:
