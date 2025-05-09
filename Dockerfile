@@ -12,6 +12,7 @@ RUN apt-get update && \
         libxrender1 \
         libxext6 \
         git \
+        curl \
         && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
