@@ -4,10 +4,6 @@ import os
 os.environ["EMBEDCHAIN_HOME"] = "/tmp/.embedchain"
 os.makedirs("/tmp/.embedchain", exist_ok=True)
 
-# Désactive la mémoire Crew AI (évite d'utiliser embedchain)
-from crewai.memory.short_term.contextual_memory import ContextualMemory
-ContextualMemory.enabled = False
-
 import streamlit as st
 
 st.write("✅ Application en cours de démarrage...")
@@ -57,7 +53,8 @@ if st.button("Générer l'article"):
         crew = Crew(
             agents=[researcher, writer],
             tasks=[task_research, task_write],
-            process=Process.sequential
+            process=Process.sequential,
+            memory=False
         )
 
         result = crew.kickoff()
