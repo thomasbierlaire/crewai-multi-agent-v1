@@ -10,7 +10,7 @@ topic = st.text_input("Entrez le sujet à traiter", "Énergie renouvelable en 20
 if st.button("Générer l'article"):
     with st.spinner("Recherche et rédaction en cours..."):
 
-        # Outils
+        # Outilss
         search_tool = DuckDuckGoSearchRun()
 
         # Agents
