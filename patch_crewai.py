@@ -1,22 +1,28 @@
-import os
 import sys
 
-# Patch pour empêcher l'import de embedchain
-class EmbedChainPatch:
-    def __init__(self):
+# Patch pour embedchain
+class DummyEmbedChain:
+    def __init__(self, *args, **kwargs):
         pass
 
-    def setup(self, *args, **kwargs):
-        pass
+    def __getattr__(self, item):
+        return DummyEmbedChain
 
-# Remplacer Client.embedchain par une version vide
-sys.modules['embedchain'] = EmbedChainPatch()
-sys.modules['embedchain.App'] = EmbedChainPatch()
-sys.modules['embedchain.client'] = EmbedChainPatch()
+    def __call__(self, *args, **kwargs):
+        return DummyEmbedChain()
 
-# Optionnel : patcher aussi crewai.memory
-try:
-    import crewai.memory.storage.rag_storage
-    crewai.memory.storage.rag_storage.RAGStorage = lambda *args, **kwargs: None
-except:
-    pass
+# Remplacer tous les modules mémoire
+def dummy_module():
+    return DummyEmbedChain()
+
+sys.modules['embedchain'] = DummyEmbedChain()
+sys.modules['embedchain.App'] = DummyEmbedChain()
+sys.modules['crewai.memory.storage.rag_storage'] = DummyEmbedChain()
+sys.modules['crewai.memory.entity.entity_memory_item'] = DummyEmbedChain()
+sys.modules['crewai.memory.long_term.long_term_memory_item'] = DummyEmbedChain()
+sys.modules['crewai.memory.contextual.contextual_memory_item'] = DummyEmbedChain()
+sys.modules['crewai.memory.entity.entity_memory'] = DummyEmbedChain()
+sys.modules['crewai.memory.long_term.long_term_memory'] = DummyEmbedChain()
+sys.modules['crewai.memory.contextual.contextual_memory'] = DummyEmbedChain()
+sys.modules['crewai.agents.cache_handler'] = DummyEmbedChain()
+sys.modules['crewai.agents.tools_handler'] = DummyEmbedChain()

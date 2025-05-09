@@ -1,9 +1,3 @@
-import os
-
-# Force EMBEDCHAIN_HOME avant tout import de crewai
-os.environ["EMBEDCHAIN_HOME"] = "/tmp/.embedchain"
-os.makedirs("/tmp/.embedchain", exist_ok=True)
-
 # Charger le patch avant d'importer Crew AI
 from patch_crewai import *
 
