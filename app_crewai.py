@@ -4,6 +4,9 @@ import os
 os.environ["EMBEDCHAIN_HOME"] = "/tmp/.embedchain"
 os.makedirs("/tmp/.embedchain", exist_ok=True)
 
+# Charger le patch avant d'importer Crew AI
+from patch_crewai import *
+
 import streamlit as st
 
 st.write("✅ Application en cours de démarrage...")
