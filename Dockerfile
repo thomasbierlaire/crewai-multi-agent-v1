@@ -36,6 +36,6 @@ COPY . .
 # Copiez et rendez exécutable le script de démarrage
 RUN chmod +x /app/start.sh
 
-EXPOSE 8501
+EXPOSE 7860 
 
 CMD ["/app/start.sh"]
