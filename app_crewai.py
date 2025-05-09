@@ -1,10 +1,12 @@
 import os
 
-# Rediriger le répertoire d'embedchain vers /tmp
+# Force EMBEDCHAIN_HOME avant tout import de crewai
 os.environ["EMBEDCHAIN_HOME"] = "/tmp/.embedchain"
-
-# Création du répertoire si nécessaire
 os.makedirs("/tmp/.embedchain", exist_ok=True)
+
+# Désactive la mémoire Crew AI (évite d'utiliser embedchain)
+from crewai.memory.short_term.contextual_memory import ContextualMemory
+ContextualMemory.enabled = False
 
 import streamlit as st
 
