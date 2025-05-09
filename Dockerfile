@@ -34,8 +34,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Copiez et rendez exécutable le script de démarrage
-RUN chmod +x /start.sh
+RUN chmod +x /app/start.sh
 
 EXPOSE 8501
 
-CMD ["streamlit", "run", "app_crewai.py", "--server.port", "8501", "--server.address", "0.0.0.0"]
+CMD ["/app/start.sh"]
+CMD ["/app/srae"]
