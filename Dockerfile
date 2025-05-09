@@ -1,33 +1,24 @@
-# Image Ubuntu officielle
+# Utilise une image Ubuntu avec Python déjà disponible
 FROM ubuntu:22.04
 
-# Mettre à jour le système et installer Python
+# Mettre à jour et installer les outils de base
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        software-properties-common \
-        ca-certificates && \
-    add-apt-repository ppa:deadsnakes/ppa && \
-    apt-get update
-
-# Installer Python 3.9 et les dépendances système
-RUN apt-get install -y --no-install-recommends \
-        python3.9 \
+        python3 \
         python3-pip \
-        build-essential \
-        gcc \
-        g++ \
+        ffmpeg \
         libgl1 \
         libsm6 \
         libxrender1 \
         libxext6 \
-        ffmpeg \
+        git \
         && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Créer un lien symbolique pour python
-RUN ln -s /usr/bin/python3.9 /usr/bin/python
+# Créer un lien symbolique python → python3
+RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# Installer pip et setuptools
+# Installer pip si nécessaire
 RUN curl https://bootstrap.pypa.io/get-pip.py  -o get-pip.py && \
     python get-pip.py && \
     rm get-pip.py
